@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: rag-profile-practice
+
+  ai:
+    openai:
+      api-key: ${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}
+    vectorstore:
+      chroma:
+        client:
+          host: http://localhost
+          port: 8000
+        initialize-schema: true
+        collection-name: SpringCollection
