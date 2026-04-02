@@ -12,4 +12,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ChatRequest {
     private String question;
+
+    public String getMessage() {
+        return this.question;
+    }
 }
