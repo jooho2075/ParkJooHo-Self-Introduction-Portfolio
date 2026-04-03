@@ -4,7 +4,7 @@ spring:
 
   ai:
     openai:
-      api-key:
+      api-key: // 필요할 때 넣어서 실행하기
     vectorstore:
       chroma:
         client:
