@@ -15,17 +15,22 @@ export default function ChatMessage({ role, content }) {
       padding: '0 16px'
     }}>
       
-      {/* 2. 말풍선 박스 */}
+      {/* 2. 말풍선 박스: CSS 변수 적용 */}
       <div style={{
-        maxWidth: '75%', // 너무 길어지지 않게 제한
+        maxWidth: '75%', 
         padding: '16px 20px',
-        borderRadius: isUser ? '20px 20px 4px 20px' : '20px 20px 20px 4px', // 말풍선 꼬리 느낌
-        backgroundColor: isUser ? '#1a73e8' : '#ffffff', // 내 질문은 파랑, AI는 흰색
-        color: isUser ? '#ffffff' : '#374151',
-        border: isUser ? 'none' : '2px solid #e5e7eb', // AI 답변에는 명확한 선 추가
-        boxShadow: '0 4px 15px rgba(0,0,0,0.05)',
+        // 유저와 AI의 말풍선 꼬리 방향 차별화
+        borderRadius: isUser ? '20px 20px 4px 20px' : '20px 20px 20px 4px', 
+        // 유저는 고정 파랑, AI는 테마 변수 배경색 적용
+        backgroundColor: isUser ? '#1a73e8' : 'var(--chat-ai-bg)', 
+        // 글자색도 테마 변수 적용 (유저는 화이트 고정)
+        color: isUser ? '#ffffff' : 'var(--text-main)',
+        // AI 답변에만 테마 변수 테두리 적용
+        border: isUser ? 'none' : '2px solid var(--chat-ai-border)', 
+        boxShadow: isUser ? '0 4px 15px rgba(26, 115, 232, 0.2)' : '0 4px 15px rgba(0,0,0,0.05)',
         lineHeight: '1.6',
-        fontSize: '15px'
+        fontSize: '15px',
+        transition: 'all 0.3s ease' // 테마 전환 시 부드럽게 변경
       }}>
         
         {/* 3. 역할 이름 표시 */}
@@ -36,12 +41,14 @@ export default function ChatMessage({ role, content }) {
           textTransform: 'uppercase',
           marginBottom: '8px',
           opacity: 0.8,
-          color: isUser ? '#e0e7ff' : '#9ca3af'
+          // 텍스트 색상도 유저/AI와 테마에 맞춰 최적화
+          color: isUser ? '#e0e7ff' : 'var(--text-sub)'
         }}>
           {isUser ? 'My Question' : 'JOOHO AI ASSISTANT'}
         </div>
         
         {/* 4. 마크다운 내용 (prose 스타일 적용) */}
+        {/* style={{ color: 'inherit' }}를 주어야 부모의 다크모드 글자색을 그대로 따라갑니다. */}
         <div className="prose prose-sm max-w-none" style={{ color: 'inherit' }}>
           <ReactMarkdown remarkPlugins={[remarkGfm]}>
             {content}
