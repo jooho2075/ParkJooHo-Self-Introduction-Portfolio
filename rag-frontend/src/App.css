@@ -1,34 +1,18 @@
-/* 마크다운 답변 가독성 보강 */
-.prose {
-  font-size: 1rem;
-  line-height: 1.7;
-  color: #374151;
+@import "tailwindcss"; /* 👈 이게 빠지면 className="flex" 같은게 작동 안 합니다! */
+
+/* 1. 기본 레이아웃 초기화 */
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* 스크롤 꼬임 방지 */
 }
 
-.prose ul { list-style-type: disc; margin: 1em 0; padding-left: 1.5em; }
-.prose strong { font-weight: 700; color: #111827; }
-
-/* 입력창 커스텀 스크롤바 */
-.custom-scrollbar::-webkit-scrollbar {
-  width: 4px;
-}
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background: #e5e7eb;
-  border-radius: 10px;
-}
-
-/* 애니메이션 효과 */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.animate-fadeIn {
-  animation: fadeIn 0.3s ease-out forwards;
-}
-
-/* 라이트 모드 (기본) */
+/* 2. 테마 변수 (주호님 코드 유지) */
 :root {
   --bg-main: #ffffff;
+  --bg-sidebar: #f9fafb; /* 사이드바 색상 추가 */
   --bg-header: rgba(255, 255, 255, 0.9);
   --text-main: #1f2937;
   --text-sub: #6b7280;
@@ -37,9 +21,9 @@
   --chat-ai-border: #e5e7eb;
 }
 
-/* 다크 모드 */
 [data-theme='dark'] {
   --bg-main: #121212;
+  --bg-sidebar: #1a1a1a; /* 사이드바 다크모드 */
   --bg-header: rgba(18, 18, 18, 0.9);
   --text-main: #f3f4f6;
   --text-sub: #9ca3af;
@@ -47,6 +31,11 @@
   --chat-ai-bg: #1e1e1e;
   --chat-ai-border: #333333;
 }
+
+/* 3. 커스텀 스타일 */
+.prose { font-size: 1rem; line-height: 1.7; color: var(--text-main); }
+.custom-scrollbar::-webkit-scrollbar { width: 4px; }
+.custom-scrollbar::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 10px; }
 
 body {
   background-color: var(--bg-main);
