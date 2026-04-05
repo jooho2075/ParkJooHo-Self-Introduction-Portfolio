@@ -4,6 +4,7 @@ export default function ChatInput({ input, setInput, onSend, loading }) {
   const handleKeyDown = (e) => {
     if (e.key === 'Enter' && !e.shiftKey && !e.nativeEvent.isComposing) {
       e.preventDefault();
+      console.log('엔터 입력됨. 현재 입력값 : ', input);
       onSend();
     }
   };
