@@ -47,6 +47,26 @@
 ### 구름톤유니브
 ---
 
+## 🏆 수상 내역
+### 📄 해외학술 논문 수상
+
+| 항목 | 내용 |
+|------|------|
+| 논문 제목 | A Study on Estimating Reasonable Insurance Price Based on the XGBoost Algorithm |
+| 논문 원본 | [논문 원본 다운로드](./assets/A_Study_on_Estimating_Reasonable_Insurance_Price_Based_on_the_XGBoost_Algorithm.docx) |
+| 발표 대본 | [발표 대본 다운로드](./assets/논문_발표_대본.pdf) |
+| 수상 인증 | [블로그에서 확인하기](https://blog.naver.com/PostView.naver?blogId=juho2075&Redirect=View&logNo=224214513793&categoryNo=11&isAfterWrite=true&isMrblogPost=false&isHappyBeanLeverage=true&contentLength=3685) |
+
+**🙋 담당 역할**
+
+| 역할 |
+|------|
+| Raw Data 수집 |
+| 데이터 분석 코드 작성 |
+| 관련 해외 논문 탐색 |
+| 발표 및 영상 제작 |
+---
+
 ## 📌 부트캠프 : 우리FIS 아카데미
 ### FRONT-END
 ### BACK-END
