@@ -1,5 +1,12 @@
 # 🧑‍💻 박주호(Park JooHo)
-박주호 포트폴리오 README입니다
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td>
+      <img src="https://github.com/user-attachments/assets/bd6ee3f3-1bc7-47cc-aabc-a4217d00ff0c" width="150" alt="박주호 프로필 사진"/>
+    </td>
+    <td><h2>박주호 포트폴리오 README입니다</h2></td>
+  </tr>
+</table>
 
 ## 👋 About Me
 ### 🎓 학력정보
