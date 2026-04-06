@@ -60,7 +60,7 @@
 ---
 
 ## 🏆 수상 내역
-### 📄 해외학술 논문 수상
+### 📄 해외학술(ICEF 2025) 논문 수상
 | 항목 | 내용 |
 |------|------|
 | 논문 제목 | [A Study on Estimating Reasonable Insurance Price Based on the XGBoost Algorithm](./assets/A_Study_on_Estimating_Reasonable_Insurance_Price_Based_on_the_XGBoost_Algorithm.pdf) |
