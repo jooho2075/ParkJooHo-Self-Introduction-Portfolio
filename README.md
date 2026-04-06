@@ -62,7 +62,7 @@
 |------|------|
 | 논문 제목 | [A Study on Estimating Reasonable Insurance Price Based on the XGBoost Algorithm](./assets/A_Study_on_Estimating_Reasonable_Insurance_Price_Based_on_the_XGBoost_Algorithm.pdf) |
 | 발표 대본 | [논문 발표 대본](./assets/presentation_script.pdf) |
-| 수상 인증 | [ICEF20205](./assets/paper_image1.jpg) \| [목차](./assets/paper_image2.jpg) \| [상장](./assets/paper_award.jpg) |
+| 수상 인증 | [ICEF20205](./assets/paper_image1.jpg) \| [목차](./assets/paper_image2.jpg) \| [상장](assets/paper_award_image.jpg) |
 | 발표영상 | [발표영상](https://blog.naver.com/juho2075/224214513793) |
 
 **🙋 담당 역할**
