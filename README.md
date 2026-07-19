@@ -81,6 +81,42 @@
 
 ---
 
+## 📌 부트캠프 : 우리FIS 아카데미
+### FRONT-END
+**🔹 미니 프로젝트:** Currency Calculator Component
+- 금융 서비스 개발자를 위한 환율 계산 모달 컴포넌트를 제작하고, npm 패키지(`woorifisa6-currency-calculator`)로 배포한 3인 팀 프로젝트입니다.
+
+| 항목 | 내용 |
+|------|------|
+| 기술 스택 | JavaScript, Vite, Tailwind CSS, ExchangeRate API |
+| 담당 역할 | 컴포넌트 UI 제작 |
+| 팀 구성 | 3인 (npm 배포/API 연동, **UI 제작**, 홈 레이아웃/모달 기능) |
+| 링크 | [GitHub](https://github.com/jooho2075/CurrencyCalculatorComponent) |
+
+```jsx
+import { CurrencyForm } from "woorifisa6-currency-calculator";
+
+<CurrencyForm from="kr" to="us" bgColor="#f0f4f8" onClose={() => {}} />
+```
+
+**🔹 프런트엔드 기술 세미나-** 주제: MFE
+- Monolithic 아키텍처의 한계(배포 지연, 협업 어려움)를 짚고, 이를 해결하는 MFE(Micro Frontend) 개념과 구현 방식을 발표 자료로 직접 준비하고 발표했습니다.
+
+| 항목 | 내용 |
+|------|------|
+| 다룬 내용 | MFE 등장 배경, 모노레포 vs 멀티레포, 구현 방식 비교(iframe / Module Federation) |
+| 코드 시연 | Host-Remote 관계 설정, `remoteEntry.js` 런타임 모듈 로딩, 해시 라우팅, Clean-up 처리 |
+| 결론 | 상황에 맞는 전략적 도입이 중요 — 완벽한 격리가 필요하면 iframe, 유기적 통합·성능이 중요하면 Module Federation |
+| 발표자료 | [MFE 발표 슬라이드](https://canva.link/0hrt0ylcoss1v1s) |
+
+---
+
+### BACK-END
+- 2차 기술 세미나(주제 : Redis)
+### CLOUD
+
+---
+
 ## 📌 대외활동 경험
 ### 멋쟁이사자처럼대학
 - 멋쟁이사자처럼대학 주관 중앙 해커톤
@@ -108,10 +144,3 @@
 | 발표 및 영상 제작 |
 
 ---
-
-## 📌 부트캠프 : 우리FIS 아카데미
-### FRONT-END
-- 1차 기술 세미나(주제 : MFE)
-### BACK-END
-- 2차 기술 세미나(주제 : Redis)
-### CLOUD
