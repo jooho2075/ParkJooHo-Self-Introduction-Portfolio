@@ -23,25 +23,56 @@
 - 고등학교 : 안양외국어고등학교(중국어 전공) 졸업
 - 대학교 : 상명대학교(천안캠퍼스) 스마트정보통신공학 전공(2026년 8월 졸업 예정)
 
+### 🛠 Tech Stack
+**Frontend**
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
+![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=next.js&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
+
+**Backend**
+![Java](https://img.shields.io/badge/Java-007396?style=flat-square&logo=openjdk&logoColor=white)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-6DB33F?style=flat-square&logo=springboot&logoColor=white)
+
+**Infra & DB**
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white)
+![Oracle](https://img.shields.io/badge/Oracle-F80000?style=flat-square&logo=oracle&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white)
+![Redis](https://img.shields.io/badge/Redis-DC382D?style=flat-square&logo=redis&logoColor=white)
+
+**Tools**
+![Git](https://img.shields.io/badge/Git-F05033?style=flat-square&logo=git&logoColor=white)
+![Notion](https://img.shields.io/badge/Notion-000000?style=flat-square&logo=notion&logoColor=white)
+![Slack](https://img.shields.io/badge/Slack-4A154B?style=flat-square&logo=slack&logoColor=white)
+
 ### 🪪 자격증
-**📊 전공관련**
+<details>
+<summary><b>📊 전공관련</b></summary>
 | 자격증 | 자격증 번호 | 취득일 | 발행기관 |
 |--------|------------|--------|---------|
 | ADsP | ADsP-0420003040 | 2024.09.06 | 한국데이터산업진흥원 |
 | SQLD | SQLD-054008938 | 2024.09.20 | 한국데이터산업진흥원 |
 | 정보처리기사 | - | 필기합격(실기 응시 예정) | - |
+</details>
 
-**🌐 어학**
+<details>
+<summary><b>🌐 어학</b></summary>
 | 자격증 | 점수/등급 | 취득일 |
 |--------|---------|--------|
 | 토익(TOEIC) | 855점 | 2025.01.21 |
 | 오픽(OPIc) | IH(Intermediate High) | 2025.02.15 |
+</details>
 
-**📄 기타**
+<details>
+<summary><b>📄 기타</b></summary>
 | 자격증 | 자격증 번호 | 취득일 | 발행기관 |
 |--------|------------|--------|---------|
 | 워드프로세서 | 23-19-008269 | 2023.07.28 | 대한상공회의소 |
 | 자동차운전면허(2종보통) | 11-19-6-5467-40 | 2019.01.28 | 서울지방경찰청 |
+</details>
 
 ### 📫 Contact
 - 📱 010-6246-7765
