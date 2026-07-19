@@ -82,6 +82,59 @@
 ---
 
 ## 📌 부트캠프 : 우리FIS 아카데미
+### 🏦 최종 프로젝트: 프리랜서 통합 자산관리 플랫폼
+불규칙한 수입 구조를 가진 프리랜서를 위한 AI 기반 통합 금융·투자 관리 플랫폼.
+마이데이터 기반 자산 통합 조회, 가상월급(자동 분배), AI 자산관리 에이전트를 제공하며 조회에서 끝나지 않고 분석 → 추천 → 실행(이체·주문)까지 이어지는 것이 핵심 기능.
+
+| 항목 | 내용 |
+|------|------|
+| 프로젝트 성격 | 금융 SI · 팀 프로젝트 (마이크로서비스 7-Server) |
+| 팀 내 역할 | **PM(팀장)** |
+| 담당 파트 | ① Admin(관리자) 전 영역, ② 뱅킹 코어(bank-server) 전 영역 |
+| 기술 스택 | Java 17, Spring Boot, Spring Data JPA, Oracle, PostgreSQL, Redis, Multi-DataSource, JPA Specification, Spring Scheduler, CompletableFuture, Docker Compose |
+| 링크 | [GitHub](https://github.com/orgs/fisa-service-4/repositories) |
+
+**시스템 아키텍처**
+7개 서버를 도메인 책임에 따라 분리하고 외부망(App 계층)과 금융 계정계(Core)를 물리적으로 격리.
+모든 금융 거래는 반드시 `transaction-server`를 경유하며 외부망은 계정계 DB에 직접 접근할 수 없음.
+
+#### 👨‍💻 담당 파트 1 — Admin(관리자) 전 영역
+
+회원 관리 / 로그 조회 / 서비스 모니터링 / 헬스 체크의 4개 축으로 관리자 도메인 전체를 설계 및 구현.
+
+**핵심 기술 포인트**
+| 포인트 | 내용 |
+|------|------|
+| 온라인 사용자 판별 | Redis `SCAN`(count 100, 커서 방식)으로 접속 중인 사용자 집합을 구성 — `KEYS` 대신 `SCAN`을 사용해 운영 환경 블로킹 방지 |
+| 동적 복합 검색 | 키워드·상태·직업군·온라인 여부를 조합한 JPA Specification 동적 쿼리, 정렬 키 화이트리스트 검증(`translateSort`) |
+| 병렬 헬스 체크 | 5개 서버 상태를 `CompletableFuture` + 전용 Executor로 병렬 호출해 순차 호출 대비 응답 지연 단축 |
+| 상태-잠금 정합성 | 회원을 ACTIVE 전환 시 PIN 잠금 해제(`pinAuth.unlock()`)를 하나의 트랜잭션으로 묶어 상태 불일치 방지 |
+
+#### 🏦 담당 파트 2 — 뱅킹 코어(bank-server) 전 영역
+금융 계정계인 bank-server를 전담해 계좌, 거래, 이체, 카드 원장과 정합성 대사, 은행/카드 이중 데이터소스 인프라를 구현.
+- 모든 API는 서비스 간 내부 호출용(`/internal/v1/bank/**`)으로 외부에 노출되지 않음.
+
+**핵심 기술 포인트**
+| 포인트 | 내용 |
+|------|------|
+| 이중 데이터소스 | 은행·카드 원장을 별도 데이터소스로 분리, 도메인 패키지별 `EntityManagerFactory`/`TransactionManager` 독립 구성 |
+| 카드 결제 파사드 | 카드 DB·은행 DB 트랜잭션 중첩 시 커넥션 풀 동시 점유 위험 → 순차 실행 파사드로 각 단계가 커넥션을 즉시 반납하도록 설계 |
+| 이체 승인 데드락 방지 | 계좌 ID 오름차순 락 획득 + `EntityManager.refresh()`(SELECT FOR UPDATE)로 stale 데이터 차단, Saga 재시도 대비 멱등 처리 |
+| 일일 정합성 대사 | 매일 자정 스케줄러로 은행·카드 원장을 대사하고 감사 로그로 사후 추적 가능하도록 구현 |
+
+**Saga 이체 흐름 (bank-to-stock)**
+- 입금 계좌가 은행 DB에 없으면 증권 예수금 충전을 위한 Saga 이체로 분기.
+- bank-server는 Saga의 생성(STEP1)·확정(STEP3)·보상(취소) 참여자로 동작함. 
+- 되돌릴 수 있는 단계(증권 예수금 충전)를 먼저 실행해 실패 시에도 은행 잔액을 안전하게 보상 처리할 수 있도록 설계함.
+
+---
+
+#### 🛠️ Trouble Shooting
+**회원 정지 시 관리자 화면 카운트 미반영 버그**
+PIN 5회 오류로 잠긴 회원이 관리자 화면의 '정지 회원' 집계에 반영되지 않는 문제 발생.
+- 원인은 백엔드 상태 전이 트랜잭션의 부분 커밋과 프론트엔드의 LOCKED 상태 매핑 누락되는 지점.
+- 트랜잭션 경계를 정리해 잠금-상태를 원자적으로 반영하고 프론트 상태 매핑을 보강해 해결.
+
 ### FRONT-END
 **🔹 미니 프로젝트:** Currency Calculator Component
 - 금융 서비스 개발자를 위한 환율 계산 모달 컴포넌트를 제작하고, npm 패키지(`woorifisa6-currency-calculator`)로 배포한 3인 팀 프로젝트입니다.
@@ -113,8 +166,8 @@ import { CurrencyForm } from "woorifisa6-currency-calculator";
 
 ### BACK-END
 **🔹 미니 프로젝트:** 우리카드 결제 MSA (wooricard-payment-msa)
-
-가맹점(POS)과 카드사로부터 받은 결제 승인 요청을 중계하고, 표준 전문 규격 데이터를 처리해 결제 이력을 관리하는 **VAN(Value Added Network) 게이트웨이**를 담당했습니다. POS → VAN → 카드사 → 은행으로 이어지는 결제 승인 흐름을 마이크로서비스로 구현한 5인 팀 프로젝트의 일부입니다.
+가맹점(POS)과 카드사로부터 받은 결제 승인 요청을 중계하고 표준 전문 규격 데이터를 처리해 결제 이력을 관리하는 **VAN(Value Added Network) 게이트웨이**를 담당
+POS → VAN → 카드사 → 은행으로 이어지는 결제 승인 흐름을 마이크로서비스로 구현한 5인 팀 프로젝트
 
 | 항목 | 내용 |
 |------|------|
@@ -146,6 +199,8 @@ import { CurrencyForm } from "woorifisa6-currency-calculator";
 | 잔액 부족(51) | 카드사 응답 코드·메시지가 POS로 정상 전달되는지 확인 |
 | 미정의 카드번호 | UNKNOWN 카드사로 정상 식별되는지 확인 |
 
+---
+
 **🔹 미니 프로젝트:** 우리카드 소비 트렌드 분석 대시보드
 - 카드 상품 기획·마케팅 담당자를 위한 내부 대시보드로, 약 530만 건의 소비 데이터를 8개 카테고리로 집계해 분기별 트렌드를 시각화했습니다. WAS 이중화·DB 복제·세션 클러스터링을 고려한 3-Tier Architecture로 구현했습니다.
 
@@ -156,6 +211,8 @@ import { CurrencyForm } from "woorifisa6-currency-calculator";
 | 담당 역할 | **MySQL Replication Read/Write 분리** — 조회(Read)는 Replica, 쓰기(Write)는 Source로 역할 분리, GTID 기반 자동 위치 동기화 구성 |
 | 핵심 문제 해결 | ① 530만 건 실시간 집계로 인한 응답 지연 → 사전 집계 테이블 도입<br>② WAS 단일 장애점(SPOF) → Tomcat 이중화 + Nginx 라운드로빈<br>③ **DB Read/Write 부하 분산** → MySQL Source/Replica 복제 구성 (담당)<br>④ 이중화 환경 세션 정합성 → DeltaManager 세션 클러스터링 |
 | 링크 | [GitHub](https://github.com/light11014/woori-card-project.git) |
+
+---
 
 **🔹 백엔드 기술 세미나:** 주제: Redis
 - RDBMS로 대용량 데이터를 처리할 때 발생하는 Disk I/O 병목·쿼리 부하 문제를 짚고, 이를 해결하는 Redis의 구조와 RDBMS와의 협업 전략을 발표 자료로 직접 준비하고 발표했습니다.
@@ -169,6 +226,7 @@ import { CurrencyForm } from "woorifisa6-currency-calculator";
 
 ---
 
+### CLOUD
 **🔹 미니 프로젝트:** CI/CD 파이프라인 및 무중단 배포(Blue/Green) 구축
 - GitHub PR 병합 이벤트를 감지해 빌드·정적 코드 분석·무중단 배포까지 자동화하는 CI/CD 파이프라인을 팀 프로젝트 구축
 - 빌드 서버(Jenkins+SonarQube)와 배포 서버(Nginx+Blue/Green 컨테이너)를 물리적으로 분리하고 멀티테넌트 환경을 고려해 전용 포트 대역 할당
