@@ -5,7 +5,7 @@
       <img src="https://github.com/user-attachments/assets/bd6ee3f3-1bc7-47cc-aabc-a4217d00ff0c" width="150" alt="박주호 프로필 사진"/>
     </td>
     <td valign="middle">
-      <h2>박주호 포트폴리오 README입니다</h2>
+      <h3>시스템의 안정성을 지키고,<br/>팀원과 함께 성장하는 것을 지향하는 개발자입니다.</h3>
     </td>
   </tr>
 </table>
