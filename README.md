@@ -169,7 +169,16 @@ import { CurrencyForm } from "woorifisa6-currency-calculator";
 
 ---
 
-### CLOUD
+**🔹 미니 프로젝트:** CI/CD 파이프라인 및 무중단 배포(Blue/Green) 구축
+- GitHub PR 병합 이벤트를 감지해 빌드·정적 코드 분석·무중단 배포까지 자동화하는 CI/CD 파이프라인을 팀 프로젝트로 구축했습니다. 빌드 서버(Jenkins+SonarQube)와 배포 서버(Nginx+Blue/Green 컨테이너)를 물리적으로 분리하고, 멀티테넌트 환경을 고려해 전용 포트 대역을 할당했습니다.
+
+| 항목 | 내용 |
+|------|------|
+| 기술 스택 | Jenkins, SonarQube, Docker(Jib), Nginx, GitHub Webhook, Spring Boot Actuator |
+| 파이프라인 흐름 | PR Merge 감지 → Gradle 빌드/테스트 → SonarQube Quality Gate 검증 → Jib으로 이미지 빌드·Push → SSH 원격 Blue/Green 배포 |
+| 핵심 설계 포인트 | ① Actuator(`/actuator/health`) 기반 정밀 헬스 체크로 정상 컨테이너에만 트래픽 전환<br>② 배포 시 이전 컨테이너는 삭제 대신 중지 상태로 순환 백업 → `docker start` 한 번으로 즉시 롤백 가능<br>③ `latest` 태그의 캐싱 누락 문제 방지를 위해 빌드 번호를 이미지 태그로 사용 |
+| 담당 역할 | (본인이 맡은 부분을 알려주세요) |
+| 링크 | [GitHub](https://github.com/jeeneep/cicd-pipeline-playground.git) |
 
 ---
 
