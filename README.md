@@ -166,7 +166,6 @@ import { CurrencyForm } from "woorifisa6-currency-calculator";
 | 코드 시연 | 5만 명 동시접속 티켓 예매 상황을 RDBMS(H2, File Mode)와 Redis(Docker, In-Memory, Sorted Set)로 각각 구현해 처리 시간 비교 |
 | 시연 결과 | 동일 로직 기준 RDBMS 112.01s vs Redis 108.69s — RAM과 SSD의 물리적 읽기/쓰기 속도 차이를 직접 입증 |
 | 결론 | 특정 DB에 의존하기보다 저장 매체의 물리적 특성을 고려한 아키텍처 설계가 중요 |
-| 발표자료 | [Redis 발표 슬라이드](링크 추가) |
 
 ---
 
